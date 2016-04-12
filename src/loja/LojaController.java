@@ -1,4 +1,4 @@
-/* 115110295 - Antunes Dantas da Silva: LAB 6 - Turma 1 */
+/* 115110295 - Antunes Dantas da Silva: LAB 7 - Turma 1 */
 
 package loja;
 

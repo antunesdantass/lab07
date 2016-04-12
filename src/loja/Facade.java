@@ -1,3 +1,5 @@
+/* 115110295 - Antunes Dantas da Silva: LAB 7 - Turma 1 */
+
 package loja;
 
 import java.util.HashSet;
