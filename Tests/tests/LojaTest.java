@@ -19,36 +19,36 @@ public class LojaTest {
 	public void testNovoUsuario() {
 		try {
 			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciusucena");
-			loja.novoUsuario("", "erro null");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Vinicius Lucena", "viniciusucena");
+			loja.criaUsuario("", "erro null");
 		} catch (Exception e) {
 			assertEquals("Nome invalido: nao pode ser null ou vazio.", e.getMessage());
 		}
 		
 		try {
 			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciusucena");
-			loja.novoUsuario("Ivyna Santino", "");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Vinicius Lucena", "viniciusucena");
+			loja.criaUsuario("Ivyna Santino", "");
 		} catch (Exception e) {
 			assertEquals("Nome invalido: nao pode ser null ou vazio.", e.getMessage());
 		}
 		
 		try {
 			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciusucena");
-			loja.novoUsuario("Antunes Dantas", "antunesdantass");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Vinicius Lucena", "viniciusucena");
+			loja.criaUsuario("Antunes Dantas", "antunesdantass");
 		} catch (Exception e) {
 			fail();
 		}
 		
 		try {
 			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciusucena");
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Vinicius Lucena", "viniciusucena");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
 		} catch (Exception e) {
 			assertEquals("Nao eh possivel adicionar o novo usuario pois o login ja esta sendo utilizado.", e.getMessage());
 		}
@@ -58,8 +58,8 @@ public class LojaTest {
 	public void testAdicionaDinheiroAoUsuario() {
 		try {
 			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciuslucena");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Vinicius Lucena", "viniciuslucena");
 			loja.adicionaDinheiroAoUsuario("antunesdantas", 20);
 			loja.adicionaDinheiroAoUsuario("antunesdantas", 20.4);
 			assertEquals(40.4, loja.getSaldoUsuario("antunesdantas"), 0.05);
@@ -72,50 +72,22 @@ public class LojaTest {
 
 	@Test
 	public void testVendaDeJogos() {
+			
 		try {
 			LojaController loja = new LojaController();
 			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
 			jogabilidades.add(Jogabilidade.COMPETITIVO);
 			jogabilidades.add(Jogabilidade.OFFLINE);
-			RPG paperMario = new RPG("Paper Mario", 20, jogabilidades);
-			Plataforma superMarioWorld = new Plataforma("Super Mario World", 20, jogabilidades);
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.adicionaDinheiroAoUsuario("antunesdantas", 40);
-			assertTrue(loja.vendaDeJogos("antunesdantas", paperMario));
-			assertTrue(loja.vendaDeJogos("antunesdantas", superMarioWorld));
-			assertTrue(loja.usuarioTemJogo("antunesdantas", "Paper Mario"));
-		} catch (Exception e) {
-			fail();
-		}
-		
-		try {
-			LojaController loja = new LojaController();
-			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
-			jogabilidades.add(Jogabilidade.COMPETITIVO);
-			jogabilidades.add(Jogabilidade.OFFLINE);
-			RPG paperMario = new RPG("Paper Mario", 20, jogabilidades);
 			Plataforma superMarioWorld = new Plataforma("Super Mario World", 20, jogabilidades);
 			RPG paperLuigi = new RPG("Paper Luigi", 20, jogabilidades);
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
+			loja.criaUsuario("Antunes Dantas", "antunesdantas");
 			loja.adicionaDinheiroAoUsuario("antunesdantas", 40);
-			assertTrue(loja.vendaDeJogos("antunesdantas", paperMario));
+			loja.vendaDeJogos("antunesdantas", "Paper Mario", "RPG", 20, jogabilidades);
 			assertTrue(loja.usuarioTemJogo("antunesdantas", "Paper Mario"));
-			assertTrue(loja.vendaDeJogos("antunesdantas", superMarioWorld));
-			loja.vendaDeJogos("antunesdantas", paperLuigi);
+			loja.vendaDeJogos("antunesdantas", "Super Mario World", "Plataforma", 20, jogabilidades);
+			assertTrue(loja.usuarioTemJogo("antunesdantas", "Super Mario World"));
 		} catch (Exception e) {
 			fail();
-		}
-	}
-	
-	@Test
-	public void testUpgradeUsuario() {
-		try {
-			LojaController loja = new LojaController();
-			loja.novoUsuario("Antunes Dantas", "antunesdantas");
-			loja.novoUsuario("Vinicius Lucena", "viniciuslucena");
-			
-		} catch (Exception e) {
-			
 		}
 	}
 

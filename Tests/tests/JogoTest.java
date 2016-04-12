@@ -12,6 +12,7 @@ import jogo.Jogabilidade;
 import jogo.Jogo;
 import jogo.Plataforma;
 import jogo.RPG;
+import usuarios.Usuario;
 import usuarios.Veterano;
 
 public class JogoTest {
@@ -79,7 +80,7 @@ public class JogoTest {
 	@Test
 	public void testGetVezesZeradas() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
 			jogabilidades.add(Jogabilidade.COMPETITIVO);
 			jogabilidades.add(Jogabilidade.OFFLINE);
@@ -87,32 +88,11 @@ public class JogoTest {
 			Plataforma superMarioWorld = new Plataforma("Super Mario World", 20, jogabilidades);
 			teste.addJogoNaLista(paperMario);
 			teste.addJogoNaLista(superMarioWorld);
-			teste.registraJogada("Super Mario World", 200, true);
-			teste.registraJogada("Super Mario World", 200, true);
-			teste.registraJogada("Super Mario World", 200, true);
-			teste.registraJogada("Super Mario World", 200, true);
+			teste.recompensar("Super Mario World", 200, true);
+			teste.recompensar("Super Mario World", 200, true);
+			teste.recompensar("Super Mario World", 200, true);
+			teste.recompensar("Super Mario World", 200, true);
 			assertEquals(superMarioWorld.getVezesZeradas(), 4);
-		} catch (Exception e) {
-			fail();
-		}
-	}
-
-	@Test
-	public void testGetVezesJogadas() {
-		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
-			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
-			jogabilidades.add(Jogabilidade.COMPETITIVO);
-			jogabilidades.add(Jogabilidade.OFFLINE);
-			RPG paperMario = new RPG("Paper Mario", 20, jogabilidades);
-			Plataforma superMarioWorld = new Plataforma("Super Mario World", 20, jogabilidades);
-			teste.addJogoNaLista(paperMario);
-			teste.addJogoNaLista(superMarioWorld);
-			teste.registraJogada("Super Mario World", 200, true);
-			teste.registraJogada("Super Mario World", 200, false);
-			teste.registraJogada("Super Mario World", 200, true);
-			teste.registraJogada("Super Mario World", 200, true);
-			assertEquals(superMarioWorld.getVezesJogadas(), 4);
 		} catch (Exception e) {
 			fail();
 		}
