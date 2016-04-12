@@ -30,9 +30,13 @@ public class Noob implements TipoDeUsuarioIF {
 	public int recompensar(HashSet<Jogabilidade> jogabilidades) { // n sei implementar isso
 		int x2pGanho = 0;
 		for (Iterator<Jogabilidade> iter = jogabilidades.iterator(); iter.hasNext();) {
-			if (iter.next().equals(jogabilidades.)
+			if (iter.next() == Jogabilidade.OFFLINE) {
+				x2pGanho += OFFLINE;
+			} else if (iter.next() == Jogabilidade.MULTIPLAYER) {
+				x2pGanho += MULTIPLAYER;
+			}
 		}
-		
+		return x2pGanho;
 	}
 	
 	public void punir(String nomeDoJogo,int scoreObtido,boolean zerou){
