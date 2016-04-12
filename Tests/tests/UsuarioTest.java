@@ -11,15 +11,14 @@ import org.junit.Test;
 import jogo.Jogabilidade;
 import jogo.Plataforma;
 import jogo.RPG;
-import usuarios.Noob;
-import usuarios.Veterano;
+import usuarios.Usuario;
 
 public class UsuarioTest {
 
 	@Test
 	public void testSetListaDeJogos() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			teste.setListaDeJogos(null);
 			fail();
 		} catch (Exception e) {
@@ -30,7 +29,7 @@ public class UsuarioTest {
 	@Test
 	public void testAumentaX2p() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			teste.adicionaDinheiro(20);
 			teste.adicionaDinheiro(-5);
 			fail();
@@ -42,7 +41,7 @@ public class UsuarioTest {
 	@Test
 	public void testAddJogoNaLista() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
 			jogabilidades.add(Jogabilidade.COMPETITIVO);
 			jogabilidades.add(Jogabilidade.OFFLINE);
@@ -61,7 +60,7 @@ public class UsuarioTest {
 	@Test
 	public void testTemJogo() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
 			jogabilidades.add(Jogabilidade.COMPETITIVO);
 			jogabilidades.add(Jogabilidade.OFFLINE);
@@ -80,7 +79,7 @@ public class UsuarioTest {
 	@Test
 	public void testRetiraDinheiro() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			teste.adicionaDinheiro(50);
 			teste.retiraDinheiro(10);
 			assertEquals(teste.getSaldo(), 40, 0.5);
@@ -94,7 +93,7 @@ public class UsuarioTest {
 	@Test
 	public void testAdicionaDinheiro() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			teste.adicionaDinheiro(50);
 			teste.retiraDinheiro(10);
 			assertEquals(teste.getSaldo(), 40, 0.5);
@@ -108,17 +107,16 @@ public class UsuarioTest {
 	@Test
 	public void testRegistraJogada() {
 		try {
-			Veterano teste = new Veterano("Antunes", "antunes");
+			Usuario teste = new Usuario("Antunes", "antunes");
 			teste.adicionaDinheiro(200);
 			HashSet<Jogabilidade> jogabilidades = new HashSet<Jogabilidade>();
 			jogabilidades.add(Jogabilidade.COMPETITIVO);
 			jogabilidades.add(Jogabilidade.OFFLINE);
-			RPG paperMario = new RPG("Paper Mario", 75, jogabilidades);
 			Plataforma superMarioWorld = new Plataforma("Super Mario World", 30, jogabilidades);
-			//teste.compraJogo(paperMario);
 			teste.compraJogo(superMarioWorld);
-			teste.registraJogada("Super Mario World", 30, true);
-			assertEquals(teste.getX2p(), 470);
+			assertEquals(300, teste.getX2p());
+			teste.recompensar("Super Mario World", 30, true);
+			assertEquals(300, teste.getX2p());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());;
 		}

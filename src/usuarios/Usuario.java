@@ -273,7 +273,7 @@ public class Usuario {
 		double precoDoJogo = jogo.getPreco() * statusDeUsuario.getDesconto();
 		retiraDinheiro(precoDoJogo);
 		listaDeJogos.add(jogo);
-		int x2pGanho = (int) (jogo.getPreco() * statusDeUsuario.compraJogo(jogo));
+		int x2pGanho = statusDeUsuario.compraJogo(jogo.getPreco());
 		aumentaX2p(x2pGanho);
 		
 	}

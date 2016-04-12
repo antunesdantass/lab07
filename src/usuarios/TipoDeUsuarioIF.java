@@ -9,7 +9,7 @@ public interface TipoDeUsuarioIF {
 
 	public double getDesconto();
 
-	public int compraJogo(Jogo jogo);
+	public int compraJogo(double precoDoJogo);
 
 	public String imprimeDadosDoUsuario(String nome, ArrayList<Jogo> jogos);
 

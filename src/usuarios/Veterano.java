@@ -26,8 +26,8 @@ public class Veterano implements TipoDeUsuarioIF {
 	 * a partir da compra de um jogo.
 	 */
 
-	public int compraJogo(Jogo jogo) {
-		return (int)(jogo.getPreco() * PONTOS_X2P);
+	public int compraJogo(double precoDoJogo) {
+		return (int)(precoDoJogo * PONTOS_X2P);
 	}
 	
 	public int recompensar(HashSet<Jogabilidade> jogabilidades) {

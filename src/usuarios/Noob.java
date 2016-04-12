@@ -70,8 +70,8 @@ public class Noob implements TipoDeUsuarioIF {
 		return DESCONTO;
 	}
 	
-	public int compraJogo(Jogo jogo) {
-		return (int)(PONTOS_X2P * jogo.getPreco());
+	public int compraJogo(double precoDoJogo) {
+		return (int)(PONTOS_X2P * precoDoJogo);
 	}
 
 	public String imprimeDadosDoUsuario(String nome, ArrayList<Jogo> jogos) {
