@@ -76,14 +76,11 @@ public class LojaController {
 	 * @return boolean
 	 */
 	public void vendaDeJogos(String login, String tituloDoJogo, String tipoDoJogo, double precoDoJogo, HashSet<Jogabilidade> jogabilidades) throws Exception {
-		Jogo novoJogo = gameFactory.criaJogo(tituloDoJogo, precoDoJogo, tipoDoJogo, jogabilidades);
+		Jogo novoJogo = gameFactory.criaJogo(tituloDoJogo, precoDoJogo, tipoDoJogo, jogabilidades); // chamada polimorfica
 		Usuario usuario = usuarios.get(login);
 		usuario.compraJogo(novoJogo);
 		usuarios.get(login).compraJogo(gameFactory.criaJogo(tituloDoJogo, precoDoJogo, tipoDoJogo, jogabilidades));
-	} // ajeitar seboseira 
-	// venda vai criar o obj jogo e passar pro compra de usuario, o usuario vai mandar pro comprajgo que vai calcular o x2p
-	// a interface vai ter um metodo que retorna o desconto para cada usuario
-	// esse desconto vai ser pego por usuario
+	} 
 	
 	/**
 	 * Metodo que informa se um usuario ja possui algum jogo passado como parametro

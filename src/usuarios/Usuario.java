@@ -232,7 +232,7 @@ public class Usuario {
 		Jogo jogo = getJogo(nomeDoJogo);
 		int x2pGanho = 0;
 		x2pGanho += jogo.registraJogada(scoreObtido, zerou);
-		x2pGanho += statusDeUsuario.recompensar(jogo.getJogabilidades());
+		x2pGanho += statusDeUsuario.recompensar(jogo.getJogabilidades()); // chamada polimorfica
 		aumentaX2p(x2pGanho);	
 	}
 	
@@ -246,7 +246,7 @@ public class Usuario {
 		Jogo jogo = getJogo(nomeDoJogo);
 		int x2pGanho = 0;
 		x2pGanho += jogo.registraJogada(scoreObtido, zerou);
-		x2pGanho += statusDeUsuario.punir(jogo.getJogabilidades());
+		x2pGanho += statusDeUsuario.punir(jogo.getJogabilidades()); // chamada polimorfica
 		aumentaX2p(x2pGanho);	
 	}
 	
@@ -270,10 +270,10 @@ public class Usuario {
 			throw new Exception("Usuario ja possui este jogo");
 		}
 		
-		double precoDoJogo = jogo.getPreco() * statusDeUsuario.getDesconto();
+		double precoDoJogo = jogo.getPreco() * statusDeUsuario.getDesconto(); // chamada polimorfica
 		retiraDinheiro(precoDoJogo);
 		listaDeJogos.add(jogo);
-		int x2pGanho = statusDeUsuario.compraJogo(jogo.getPreco());
+		int x2pGanho = statusDeUsuario.compraJogo(jogo.getPreco()); // chamada polimorfica
 		aumentaX2p(x2pGanho);
 		
 	}
@@ -287,7 +287,7 @@ public class Usuario {
 	}
 	
 	public String toString() {
-		return statusDeUsuario.imprimeDadosDoUsuario(this.getNome(), criaCopiaDeListaDeJogos());
+		return statusDeUsuario.imprimeDadosDoUsuario(this.getNome(), criaCopiaDeListaDeJogos()); // chamada polimorfica
 	}
 
 	@Override
