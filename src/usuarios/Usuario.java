@@ -230,11 +230,24 @@ public class Usuario {
 			throw new ExceptionJogoScoreInvalido();
 		}
 		Jogo jogo = getJogo(nomeDoJogo);
-		if (zerou) {
-			jogo.zerou();
+		int x2pGanho = 0;
+		x2pGanho += jogo.registraJogada(scoreObtido, zerou);
+		x2pGanho += statusDeUsuario.recompensar(jogo.getJogabilidades());
+		aumentaX2p(x2pGanho);	
+	}
+	
+	public void punir(String nomeDoJogo, int scoreObtido, boolean zerou) throws Exception {
+		if (nomeDoJogo == null || nomeDoJogo.trim().isEmpty()) {
+			throw new ExceptionJogoNomeInvalido();
 		}
-		
-		
+		if (scoreObtido < 0) {
+			throw new ExceptionJogoScoreInvalido();
+		}
+		Jogo jogo = getJogo(nomeDoJogo);
+		int x2pGanho = 0;
+		x2pGanho += jogo.registraJogada(scoreObtido, zerou);
+		x2pGanho += statusDeUsuario.punir(jogo.getJogabilidades());
+		aumentaX2p(x2pGanho);	
 	}
 	
 	/**

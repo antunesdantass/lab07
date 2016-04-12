@@ -27,7 +27,7 @@ public class Noob implements TipoDeUsuarioIF {
 	private final int COOPERATIVO = -50;
 	private final String NEWLINE = System.getProperty("line.separator");
 	
-	public int recompensar(HashSet<Jogabilidade> jogabilidades) { // n sei implementar isso
+	public int recompensar(HashSet<Jogabilidade> jogabilidades) {
 		int x2pGanho = 0;
 		for (Iterator<Jogabilidade> iter = jogabilidades.iterator(); iter.hasNext();) {
 			if (iter.next() == Jogabilidade.OFFLINE) {
@@ -39,8 +39,18 @@ public class Noob implements TipoDeUsuarioIF {
 		return x2pGanho;
 	}
 	
-	public void punir(String nomeDoJogo,int scoreObtido,boolean zerou){
-		
+	public int punir(HashSet<Jogabilidade> jogabilidades){
+		int x2pGanho = 0;
+		for (Iterator<Jogabilidade> iter = jogabilidades.iterator(); iter.hasNext();) {
+			if (iter.next() == Jogabilidade.ONLINE) {
+				x2pGanho += ONLINE;
+			} else if (iter.next() == Jogabilidade.COMPETITIVO) {
+				x2pGanho += COMPETITIVO;
+			} else if (iter.next() == Jogabilidade.COOPERATIVO) {
+				x2pGanho += COOPERATIVO;
+			}
+		}
+		return x2pGanho;
 	}
 	
 	public double getDesconto(Jogo jogo) {

@@ -117,6 +117,10 @@ public abstract class Jogo {
 		return this.qtdVezesJogadas;
 	}
 	
+	public HashSet<Jogabilidade> getJogabilidades() {
+		return this.jogabilidades;
+	}
+	
 	/** Metodo que incrementa em 1 o numero de vezes que um jogo foi jogado a cada execucao do mesmo
 	 */
 	public void jogou(){
