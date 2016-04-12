@@ -15,7 +15,7 @@ public class Facade {
 
 	public void criaUsuario(String nomeDoUsuario, String login, String tipo) {
 		try {
-			loja.criaUsuario(nomeDoUsuario, login, tipo);
+			loja.criaUsuario(nomeDoUsuario, login);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -56,13 +56,4 @@ public class Facade {
 			return false;
 		}
 	}
-	
-	public void upgradeUsuario(String login) {
-		try {
-			loja.upgradeUsuario(login);
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-
 }

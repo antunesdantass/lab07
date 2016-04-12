@@ -262,7 +262,7 @@ public class Usuario {
 			throw new Exception("Jogo nao pode ser null");
 		}
 		
-		if (jogo.getPreco()*statusDeUsuario.getDesconto(jogo) > this.getSaldo()) {
+		if (jogo.getPreco()*statusDeUsuario.getDesconto() > this.getSaldo()) {
 			throw new Exception("Usuario nao possui dinheiro suficiente para comprar novo jogo");
 		}
 		
@@ -270,7 +270,7 @@ public class Usuario {
 			throw new Exception("Usuario ja possui este jogo");
 		}
 		
-		double precoDoJogo = jogo.getPreco() * statusDeUsuario.getDesconto(jogo);
+		double precoDoJogo = jogo.getPreco() * statusDeUsuario.getDesconto();
 		retiraDinheiro(precoDoJogo);
 		listaDeJogos.add(jogo);
 		int x2pGanho = (int) (jogo.getPreco() * statusDeUsuario.compraJogo(jogo));

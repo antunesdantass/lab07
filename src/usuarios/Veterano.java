@@ -57,8 +57,8 @@ public class Veterano implements TipoDeUsuarioIF {
 	/**
 	 * Metodo que informa a quantidade de desconto que o usuario tera ao comprar um jogo
 	 */
-	public double getDesconto(Jogo jogo) {
-		return jogo.getPreco() * DESCONTO;
+	public double getDesconto() {
+		return DESCONTO;
 	}
 
 	/**

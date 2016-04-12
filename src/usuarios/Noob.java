@@ -27,6 +27,11 @@ public class Noob implements TipoDeUsuarioIF {
 	private final int COOPERATIVO = -50;
 	private final String NEWLINE = System.getProperty("line.separator");
 	
+	/**
+	 * Recompensa o usuario com pontos X2p que dependem do tipo de jogo a ser jogado
+	 * @param recebe um HashSet com as jogabilidades do jogo
+	 * @return retorna a quantidade de x2p ganho pelo usuario
+	 */
 	public int recompensar(HashSet<Jogabilidade> jogabilidades) {
 		int x2pGanho = 0;
 		for (Iterator<Jogabilidade> iter = jogabilidades.iterator(); iter.hasNext();) {
@@ -39,6 +44,11 @@ public class Noob implements TipoDeUsuarioIF {
 		return x2pGanho;
 	}
 	
+	/**
+	 * Puni o usuario com pontos X2p que dependem do tipo de jogo a ser jogado
+	 * @param recebe um HashSet com as jogabilidades do jogo
+	 * @return retorna a quantidade de x2p perdidas pelo usuario
+	 */
 	public int punir(HashSet<Jogabilidade> jogabilidades){
 		int x2pGanho = 0;
 		for (Iterator<Jogabilidade> iter = jogabilidades.iterator(); iter.hasNext();) {
@@ -53,8 +63,11 @@ public class Noob implements TipoDeUsuarioIF {
 		return x2pGanho;
 	}
 	
-	public double getDesconto(Jogo jogo) {
-		return DESCONTO * jogo.getPreco();
+	/**
+	 * Retorna a quantidade 
+	 */
+	public double getDesconto() {
+		return DESCONTO;
 	}
 	
 	public int compraJogo(Jogo jogo) {

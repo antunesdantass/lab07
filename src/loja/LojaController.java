@@ -10,13 +10,11 @@ package loja;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
 import erros.ExceptionLojaUpgrade;
 import erros.ExceptionUsuarioEntradaInvalida;
 import jogo.GameFactory;
 import jogo.Jogabilidade;
 import jogo.Jogo;
-import usuarios.UserFactory;
 import usuarios.Usuario;
 import usuarios.Veterano;
 
@@ -25,22 +23,21 @@ public class LojaController {
 	private final int PONTUACAO_MINIMA_UPGRADE = 1000;
 	private final static String NEWLINE = System.getProperty("line.separator");
 	private HashMap<String, Usuario> usuarios;
-	private UserFactory userFactory;
 	private GameFactory gameFactory;
 
 	public LojaController() {
 		usuarios = new HashMap<String, Usuario>();
-		userFactory = new UserFactory();
 		gameFactory = new GameFactory();
 	}
 	
 	/**
 	 * Metodo que cadastra um novo usuario.
-	 * @param nomeDoUsuario dizer o que eh esse parametro
-	 * @param login
+	 * @param nomeDoUsuario: String com o nome do usuario 
+	 * @param login: login do usuario, utilizado como chave no HashMap
 	 */
-	public void criaUsuario(String nomeDoUsuario, String login, String tipo) throws Exception {
-		usuarios.put(login, userFactory.criaUsuario(nomeDoUsuario, login, tipo));
+	public void criaUsuario(String nomeDoUsuario, String login) throws Exception {
+		Usuario newUser = new Usuario(nomeDoUsuario, login);
+		usuarios.put(login, newUser);
 	}
 	
 	/**
@@ -61,7 +58,7 @@ public class LojaController {
 	
 	/**
 	 * Metodo que informa o saldo, em Reais, de determinado usuario atraves do login do usuario desejado
-	 * @param login
+	 * @param login: usado para procurar o usuario no HashMap
 	 * @return
 	 */
 	public double getSaldoUsuario(String login) throws Exception {
@@ -98,32 +95,7 @@ public class LojaController {
 		return usuarios.get(login).temJogo(tituloDoJogo);
 	}
 	
-	/**
-	 * Metodo que realiza o upgrade de usuario Noob para usuario Veterano de acordo com a sua pontuacao x2p
-	 * @param login
-	 */
-	public void upgradeUsuario(String login) {
-		try {
-			Usuario usuario = usuarios.get(login);
-			if (usuario.getClass() == Veterano.class) {
-				throw new ExceptionLojaUpgrade();
-			}
-
-			if (usuario.getX2p() < PONTUACAO_MINIMA_UPGRADE) {
-				throw new ExceptionLojaUpgrade("O usuario nao possui pontuacao necessaria para upgrade");
-			}
-
-			Veterano upgradedUser = new Veterano(usuarios.get(login).getNome(), login);
-			upgradedUser.aumentaX2p(usuario.getX2p());
-			upgradedUser.adicionaDinheiro(usuario.getSaldo());
-			upgradedUser.setListaDeJogos(usuario.getListaDeJogos());
-			usuarios.put(login, upgradedUser);
-		} catch (Exception e) {
-			System.err.print(e.getMessage());
-		}
-
-	}
-
+	
 	public String toString() {
 		String saida = "=== Central P2-CG ===" + NEWLINE;
 		Set<String> chaves = usuarios.keySet();

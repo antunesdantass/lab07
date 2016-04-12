@@ -7,7 +7,7 @@ import jogo.Jogo;
 
 public interface TipoDeUsuarioIF {
 
-	public double getDesconto(Jogo jogo);
+	public double getDesconto();
 
 	public int compraJogo(Jogo jogo);
 
